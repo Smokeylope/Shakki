@@ -94,10 +94,10 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			case 1:
 				if (!getOnkoMustaKTliikkunut && !getOnkoMustaKuningasLiikkunut) {
 
-					lauta[7][6] = &vk;
-					lauta[7][4] = NULL;
-					lauta[7][5] = &vt;
-					lauta[7][7] = NULL;
+					lauta[0][6] = &vk;
+					lauta[0][4] = NULL;
+					lauta[0][5] = &vt;
+					lauta[0][7] = NULL;
 
 					onkoMustaKuningasLiikkunut = true;
 					onkoMustaDTliikkunut = true;
