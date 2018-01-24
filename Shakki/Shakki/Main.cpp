@@ -9,5 +9,6 @@ int main()
 	Kayttoliittyma kayttoliittyma(&asema);
 	kayttoliittyma.piirraLauta();
 
+	// PELI LOOP
 	return 0;
 }
