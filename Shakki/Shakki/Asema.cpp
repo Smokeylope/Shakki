@@ -79,7 +79,7 @@ void Asema::paivitaAsema(Siirto* siirto) {
 	if (siirto->onkoLyhytLinna() == true) {
 		switch(vuorossaOlevaPelaaja){
 			case 0:
-				if (!getOnkoValkeaKTliikkunut && !getOnkoValkeaKuningasLiikkunut) {
+				if (!getOnkoValkeaKTliikkunut() && !getOnkoValkeaKuningasLiikkunut()) {
 
 					lauta[0][6] = &vk;
 					lauta[0][4] = NULL;
@@ -92,7 +92,7 @@ void Asema::paivitaAsema(Siirto* siirto) {
 				}
 				break;
 			case 1:
-				if (!getOnkoMustaKTliikkunut && !getOnkoMustaKuningasLiikkunut) {
+				if (!getOnkoMustaKTliikkunut() && !getOnkoMustaKuningasLiikkunut()) {
 
 					lauta[7][6] = &vk;
 					lauta[7][4] = NULL;
@@ -112,7 +112,7 @@ void Asema::paivitaAsema(Siirto* siirto) {
 	else if (siirto->onkoPitkaLinna() == true) {
 		switch (vuorossaOlevaPelaaja) {
 		case 0:
-			if (!getOnkoValkeaDTliikkunut && !getOnkoValkeaKuningasLiikkunut) {
+			if (!getOnkoValkeaDTliikkunut() && !getOnkoValkeaKuningasLiikkunut()) {
 				
 				lauta[0][1] = &vk;
 				lauta[0][4] = NULL;
@@ -125,7 +125,7 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			}
 			break;
 		case 1:
-			if (!getOnkoMustaDTliikkunut && !getOnkoMustaKuningasLiikkunut) {
+			if (!getOnkoMustaDTliikkunut() && !getOnkoMustaKuningasLiikkunut()) {
 
 				lauta[7][1] = &mk;
 				lauta[7][4] = NULL;
