@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Nappula.h"
+#include "Siirto.h"
 
 class Asema{
 

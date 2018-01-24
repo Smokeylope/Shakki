@@ -26,8 +26,8 @@ Asema::Asema(){
 	lauta[0][0] = &vt;
 	lauta[0][1] = &vr;
 	lauta[0][2] = &vl;
-	lauta[0][3] = &vk;
-	lauta[0][4] = &vd;
+	lauta[0][3] = &vd;
+	lauta[0][4] = &vk;
 	lauta[0][5] = &vl;
 	lauta[0][6] = &vr;
 	lauta[0][7] = &vt;
@@ -45,8 +45,8 @@ Asema::Asema(){
 	lauta[7][0] = &mt;
 	lauta[7][1] = &mr;
 	lauta[7][2] = &ml;
-	lauta[7][3] = &mk;
-	lauta[7][4] = &md;
+	lauta[7][3] = &md;
+	lauta[7][4] = &mk;
 	lauta[7][5] = &ml;
 	lauta[7][6] = &mr;
 	lauta[7][7] = &mt;

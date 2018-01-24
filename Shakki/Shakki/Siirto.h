@@ -10,11 +10,11 @@ public:
 	Ruutu getAlkuruutu();
 	Ruutu getLoppuruutu();
 	bool onkoLyhytLinna();
-	bool onkoPitk‰linna();
+	bool onkoPitk‰Linna();
 private:
-	Ruutu alkuRuutu;
-	Ruutu loppuRuutu;
-	int miksiKorotetaan = 0;
-	bool lyhytLinna;
-	bool pitkalinna;
+	Ruutu _alkuRuutu;
+	Ruutu _loppuRuutu;
+	int _miksiKorotetaan = 0;
+	bool _lyhytLinna;
+	bool _pitkaLinna;
 };
