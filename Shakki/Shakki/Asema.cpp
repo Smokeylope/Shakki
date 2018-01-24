@@ -65,7 +65,7 @@ Asema::Asema(){
   // VIIKKO 2
 
 void Asema::paivitaAsema(Siirto* siirto) {
-
+/*
 		// mikä nappula on alkuruudussa
 	Ruutu alkuRuutu = siirto->getAlkuruutu();
 	Ruutu loppuRuutu = siirto->getLoppuruutu();
@@ -173,7 +173,7 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			break;
 
 		}
-	}
+	}*/
 }
 
 
