@@ -72,10 +72,73 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			// jos joku alla olevista niin päivitä
 	Nappula *valittuNappula = NULL;
 	valittuNappula = lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()];
-	
-	// Jos kyseessä on linnoitus käydään läpi iffi, muussa tapauksessa tehdään elsen sisällä oleva switchi
-	if (siirto->onkoLyhytLinna() == true || siirto->onkoPitkaLinna() == true) {
+	int vuorossaOlevaPelaaja = getSiirtovuoro();
 
+	// Jos kyseessä on linnoitus käydään läpi iffi, muussa tapauksessa tehdään elsen sisällä oleva switchi
+	//Lyhyt linnoitus
+	if (siirto->onkoLyhytLinna() == true) {
+		switch(vuorossaOlevaPelaaja){
+			case 0:
+				if (!getOnkoValkeaKTliikkunut && !getOnkoValkeaKuningasLiikkunut) {
+
+					lauta[0][6] = &vk;
+					lauta[0][4] = NULL;
+					lauta[0][5] = &vt;
+					lauta[0][7] = NULL;
+
+					onkoValkeaKuningasLiikkunut = true;
+					onkoValkeaDTliikkunut = true;
+					setSiirtovuoro(1);
+				}
+				break;
+			case 1:
+				if (!getOnkoMustaKTliikkunut && !getOnkoMustaKuningasLiikkunut) {
+
+					lauta[0][6] = &vk;
+					lauta[0][4] = NULL;
+					lauta[0][5] = &vt;
+					lauta[0][7] = NULL;
+
+					onkoMustaKuningasLiikkunut = true;
+					onkoMustaDTliikkunut = true;
+					setSiirtovuoro(0);
+				}
+				break;
+		}
+		
+
+	}
+	//Pitkä linnoitus
+	else if (siirto->onkoPitkaLinna() == true) {
+		switch (vuorossaOlevaPelaaja) {
+		case 0:
+			if (!getOnkoValkeaDTliikkunut && !getOnkoValkeaKuningasLiikkunut) {
+				
+				lauta[0][1] = &vk;
+				lauta[0][4] = NULL;
+				lauta[0][2] = &vt;
+				lauta[0][0] = NULL;
+
+				onkoValkeaKuningasLiikkunut = true;
+				onkoValkeaDTliikkunut = true;
+				setSiirtovuoro(1);
+			}
+			break;
+		case 1:
+			if (!getOnkoMustaDTliikkunut && !getOnkoMustaKuningasLiikkunut) {
+
+				lauta[7][1] = &mk;
+				lauta[7][4] = NULL;
+				lauta[7][2] = &mt;
+				lauta[7][0] = NULL;
+
+				onkoMustaKuningasLiikkunut = true;
+				onkoMustaDTliikkunut = true;
+				setSiirtovuoro(0);
+			}
+			break;
+		}
+		
 	}
 	else {
 		// Valitaan oikea tapahtuma switchissä, ELI TÄSSÄ ON ASEMAN PÄIVITYS
@@ -89,86 +152,102 @@ void Asema::paivitaAsema(Siirto* siirto) {
 				setSiirtovuoro(1);
 			}
 			else if (alkuRuutu.getSarake() == 7) {
-				lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+				lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
 				lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 				onkoValkeaKTliikkunut = true;
 				setSiirtovuoro(1);
 			}
 			else {
-				lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+				lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+				lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 				setSiirtovuoro(1);
 			}
 			break;
 		case VR:
-			lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(1);
 			break;
 		case VL:
-			lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(1);
 			break;
 		case VD:
-			lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(1);
 			break;
 		case VK:
 			if (!getOnkoValkeaKuningasLiikkunut) {
-				lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+				lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+				lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 				onkoValkeaKuningasLiikkunut = true;
 				setSiirtovuoro(1);
 			}
 			else {
-				lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+				lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+				lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 				setSiirtovuoro(1);
 			}
 			break;
 		case VS:
-			lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(1);
 			break;
 
 			// MUSTAT
 		case MT:
 			if (alkuRuutu.getSarake() == 0) {
-				lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+				lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+				lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 				onkoMustaDTliikkunut = true;
 				setSiirtovuoro(0);
 			}
 			else if (alkuRuutu.getSarake() == 7) {
-				lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+				lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+				lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 				onkoMustaKTliikkunut = true;
 				setSiirtovuoro(0);
 			}
 			else {
-				lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+				lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+				lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 				setSiirtovuoro(0);
 			}
 			break;
 		case MR:
-			lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(0);
 			break;
 		case ML:
-			lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(0);
 			break;
 		case MD:
-			lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(0);
 			break;
 		case MK:
 			if (!getOnkoMustaKuningasLiikkunut) {
-				lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+				lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+				lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 				onkoMustaKuningasLiikkunut = true;
 				setSiirtovuoro(0);
 			}
 			else {
-				lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+				lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+				lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 				setSiirtovuoro(0);
 			}
 			break;
 		case MS:
-			lauta[loppuRuutu.getRivi][loppuRuutu.getSarake] = valittuNappula;
+			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(0);
 			break;
 
