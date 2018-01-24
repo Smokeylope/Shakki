@@ -10,7 +10,7 @@ public:
 	Ruutu getAlkuruutu();
 	Ruutu getLoppuruutu();
 	bool onkoLyhytLinna();
-	bool onkoPitk‰Linna();
+	bool onkoPitkaLinna();
 private:
 	Ruutu _alkuRuutu;
 	Ruutu _loppuRuutu;
