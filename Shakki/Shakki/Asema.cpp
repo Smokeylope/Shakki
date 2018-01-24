@@ -66,6 +66,33 @@ Asema::Asema(){
 
 void Asema::paivitaAsema(Siirto* siirto) {
 
+		// mikä nappula on alkuruudussa
+	Ruutu alkuRuutu = siirto->getAlkuruutu();
+			// jos joku alla olevista niin päivitä
+	Nappula *valittuNappula = NULL;
+	valittuNappula = lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()];
+	
+	// Jos valkoinen nappula
+	if (valittuNappula->getKoodi = "vk") {
+		onkoValkeaKuningasLiikkunut = true;
+		}
+	if (valittuNappula->getKoodi = "vt" && alkuRuutu.getSarake = 0) {
+		onkoValkeaDTliikkunut = true;
+	}
+	if (valittuNappula->getKoodi = "vt" && alkuRuutu.getSarake = 7) {
+		onkoValkeaKTliikkunut = true;
+	}
+	// Jos musta nappula
+	if (valittuNappula->getKoodi = "mk") {
+		onkoMustaKuningasLiikkunut = true;
+	}
+	if (valittuNappula->getKoodi = "mt" && alkuRuutu.getSarake = 0) {
+		onkoMustaDTliikkunut = true;
+	}
+	if (valittuNappula->getKoodi = "mt" && alkuRuutu.getSarake = 7) {
+		onkoMustaKTliikkunut = true;
+	}
+
 }
 int Asema::getSiirtovuoro() {
 	return siirtovuoro;
