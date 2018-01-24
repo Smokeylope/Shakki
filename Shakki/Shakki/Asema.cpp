@@ -60,3 +60,34 @@ Asema::Asema(){
 	lauta[6][6] = &ms;
 	lauta[6][7] = &ms;
 } // ASEMA KONSTRUKTORI LOPPU
+
+
+  // VIIKKO 2
+
+void Asema::paivitaAsema(Siirto* siirto) {
+
+}
+int Asema::getSiirtovuoro() {
+	return siirtovuoro;
+}
+void Asema::setSiirtovuoro(int vari) {
+	this->siirtovuoro = vari;
+}
+bool Asema::getOnkoValkeaKuningasLiikkunut() {
+	return onkoValkeaKuningasLiikkunut;
+}
+bool Asema::getOnkoMustaKuningasLiikkunut() {
+	return onkoMustaKuningasLiikkunut;
+}
+bool Asema::getOnkoValkeaDTliikkunut() {
+	return onkoValkeaDTliikkunut;
+}
+bool Asema::getOnkoValkeaKTliikkunut() {
+	return onkoValkeaKTliikkunut;
+}
+bool Asema::getOnkoMustaDTliikkunut() {
+	return onkoMustaDTliikkunut;
+}
+bool Asema::getOnkoMustaKTliikkunut() {
+	return onkoMustaKTliikkunut;
+}
