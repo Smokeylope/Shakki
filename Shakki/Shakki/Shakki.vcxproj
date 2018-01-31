@@ -146,6 +146,7 @@
     <ClCompile Include="Kayttoliittyma.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Nappula.cpp" />
+    <ClCompile Include="Ratsu.cpp" />
     <ClCompile Include="Ruutu.cpp" />
     <ClCompile Include="Siirto.cpp" />
     <ClCompile Include="Sotilas.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Asema.h" />
     <ClInclude Include="Kayttoliittyma.h" />
     <ClInclude Include="Nappula.h" />
+    <ClInclude Include="Ratsu.h" />
     <ClInclude Include="Ruutu.h" />
     <ClInclude Include="Siirto.h" />
     <ClInclude Include="Sotilas.h" />
