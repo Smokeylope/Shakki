@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Nappula.h"
+#include "Sotilas.h"
 #include "Siirto.h"
 
 class Asema{
@@ -20,13 +21,16 @@ public:
 	bool getOnkoMustaDTliikkunut();
 	bool getOnkoMustaKTliikkunut();
 
+	// VIIKKO 3
+	void annaLaillisetSiirrot(std::list<Siirto>& lista);
+
 private:
 	static Nappula vk;
 	static Nappula vd;
 	static Nappula vt;
 	static Nappula vl;
 	static Nappula vr;
-	static Nappula vs;
+	static Sotilas vs;
 
 	static Nappula mk;
 	static Nappula md;

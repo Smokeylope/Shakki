@@ -1,5 +1,8 @@
 #pragma once
 #include <string>
+#include <list>
+#include "Ruutu.h"
+#include "Asema.h"
 
 // Vakioarvot nappulatyypeille.
 enum
@@ -23,4 +26,5 @@ public:
 	std::wstring getUnicode();
 	void setVari(int);
 	int getVari();
+	virtual void annaSiirrot(std::list<Siirto>& lista, Ruutu*, Asema*, int vari) = 0;
 };
