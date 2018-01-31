@@ -36,6 +36,9 @@
     <ClCompile Include="Sotilas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Torni.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asema.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sotilas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Torni.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
