@@ -150,6 +150,7 @@
     <ClCompile Include="Ruutu.cpp" />
     <ClCompile Include="Siirto.cpp" />
     <ClCompile Include="Sotilas.cpp" />
+    <ClCompile Include="Torni.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asema.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Ruutu.h" />
     <ClInclude Include="Siirto.h" />
     <ClInclude Include="Sotilas.h" />
+    <ClInclude Include="Torni.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
