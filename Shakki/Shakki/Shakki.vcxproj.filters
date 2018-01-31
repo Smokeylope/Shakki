@@ -42,6 +42,12 @@
     <ClCompile Include="Ratsu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Kuningas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lahetti.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Kuningatar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,6 +75,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Ratsu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kuningas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lahetti.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Kuningatar.h">
