@@ -39,12 +39,14 @@ int Nappula::getVari()
 }
 
 bool Nappula::onkoSiirtoMahdollinen(Asema* asema,int loppuRivi, int loppuSarake) {
-	if (!loppuRivi < 0 && !loppuRivi > 7 && !loppuSarake < 0 && !loppuSarake > 7) {
-		if (!asema->lauta[loppuRivi][loppuSarake]) {
-			return true;
-		}
-		else {
-			return false;
+	if (loppuRivi >= 0 && loppuRivi <= 7) {
+		if (loppuSarake >= 0 && loppuSarake <= 7) {
+			if (!asema->lauta[loppuRivi][loppuSarake]) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 	}
 	else {
