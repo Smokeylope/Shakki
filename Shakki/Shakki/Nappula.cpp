@@ -44,8 +44,11 @@ bool Nappula::onkoSiirtoMahdollinen(Asema* asema,int loppuRivi, int loppuSarake)
 			if (!asema->lauta[loppuRivi][loppuSarake]) {
 				return true;
 			}
-			else {
+			else if (asema->getSiirtovuoro() == asema->lauta[loppuRivi][loppuSarake]->getVari()) {
 				return false;
+			}
+			else {
+				return true;
 			}
 		}
 		else {
