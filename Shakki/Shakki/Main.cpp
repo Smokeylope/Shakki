@@ -11,6 +11,10 @@ int main()
 	// PELI LOOP
 	while (true) {
 		kayttoliittyma.piirraLauta();
+
+		std::list<Siirto> siirrot;
+		asema.annaLaillisetSiirrot(siirrot);
+
 		Siirto siirto = kayttoliittyma.annaVastustajanSiirto();
 		asema.paivitaAsema(&siirto);
 		system("cls");

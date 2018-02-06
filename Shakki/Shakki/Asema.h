@@ -1,8 +1,19 @@
 #pragma once
 
-#include "Nappula.h"
+#include "Kuningas.h"
+#include "Kuningatar.h"
+#include "Lahetti.h"
+#include "Torni.h"
+#include "Ratsu.h"
 #include "Sotilas.h"
-#include "Siirto.h"
+
+/*class Nappula;
+class Kuningas : public Nappula;
+class Kuningatar : public Nappula;
+class Lahetti : public Nappula;
+class Torni : public Nappula;
+class Ratsu : public Nappula;
+class Sotilas : public Nappula;*/
 
 class Asema{
 
@@ -25,19 +36,19 @@ public:
 	void annaLaillisetSiirrot(std::list<Siirto>& lista);
 
 private:
-	static Nappula vk;
-	static Nappula vd;
-	static Nappula vt;
-	static Nappula vl;
-	static Nappula vr;
+	static Kuningas vk;
+	static Kuningatar vd;
+	static Torni vt;
+	static Lahetti vl;
+	static Ratsu vr;
 	static Sotilas vs;
 
-	static Nappula mk;
-	static Nappula md;
-	static Nappula mt;
-	static Nappula ml;
-	static Nappula mr;
-	static Nappula ms;
+	static Kuningas mk;
+	static Kuningatar md;
+	static Torni mt;
+	static Lahetti ml;
+	static Ratsu mr;
+	static Sotilas ms;
 
 	// VIIKKO 2
 	int siirtovuoro;

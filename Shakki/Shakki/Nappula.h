@@ -2,7 +2,10 @@
 #include <string>
 #include <list>
 #include "Ruutu.h"
-#include "Asema.h"
+#include "Siirto.h"
+//#include "Asema.h"
+
+class Asema;
 
 // Vakioarvot nappulatyypeille.
 enum

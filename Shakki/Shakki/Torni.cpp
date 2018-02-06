@@ -1,9 +1,10 @@
 #include "Torni.h"
+#include "Asema.h"
 
-void Sotilas::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* asema, int vari) {
+void Torni::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* asema, int vari) {
 	// Ylös
 	for (int i = alkuRuutu->getRivi() + 1; i < 8; i++) {
-		if (asema->lauta[i][alkuRuutu->getSarake]) {
+		if (asema->lauta[i][alkuRuutu->getSarake()]) {
 			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
 		}
 		else {
@@ -13,7 +14,7 @@ void Sotilas::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* ase
 
 	// Alas
 	for (int i = alkuRuutu->getRivi() - 1; i >= 0; i--) {
-		if (asema->lauta[i][alkuRuutu->getSarake]) {
+		if (asema->lauta[i][alkuRuutu->getSarake()]) {
 			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
 		}
 		else {
