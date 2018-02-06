@@ -48,6 +48,9 @@ bool Nappula::onkoSiirtoMahdollinen(Asema* asema,int loppuRivi, int loppuSarake)
 				return false;
 			}
 		}
+		else {
+			return false;
+		}
 	}
 	else {
 		return false;

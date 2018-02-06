@@ -1,18 +1,18 @@
 #include "Asema.h"
 
-Nappula Asema::vk(L"\u2654", 0, 4);
-Nappula Asema::vd(L"\u2655", 0, 3);
-Nappula Asema::vt(L"\u2656", 0, 0);
-Nappula Asema::vl(L"\u2657", 0, 2);
-Nappula Asema::vr(L"\u2658", 0, 1);
-Nappula Asema::vs(L"\u2659", 0, 5);
+Kuningas Asema::vk(L"\u2654", 0, 4);
+Kuningatar Asema::vd(L"\u2655", 0, 3);
+Torni Asema::vt(L"\u2656", 0, 0);
+Lahetti Asema::vl(L"\u2657", 0, 2);
+Ratsu Asema::vr(L"\u2658", 0, 1);
+Sotilas Asema::vs(L"\u2659", 0, 5);
 
-Nappula Asema::mk(L"\u265A", 1, 10);
-Nappula Asema::md(L"\u265B", 1, 9);
-Nappula Asema::mt(L"\u265C", 1, 6);
-Nappula Asema::ml(L"\u265D", 1, 8);
-Nappula Asema::mr(L"\u265E", 1, 7);
-Nappula Asema::ms(L"\u265F", 1, 11);
+Kuningas Asema::mk(L"\u265A", 1, 10);
+Kuningatar Asema::md(L"\u265B", 1, 9);
+Torni Asema::mt(L"\u265C", 1, 6);
+Lahetti Asema::ml(L"\u265D", 1, 8);
+Ratsu Asema::mr(L"\u265E", 1, 7);
+Sotilas Asema::ms(L"\u265F", 1, 11);
 
 Asema::Asema(){
 	// LAUDAN ALUSTUS
@@ -179,7 +179,7 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			setSiirtovuoro(1);
 			break;
 		case VK:
-			if (!getOnkoValkeaKuningasLiikkunut) {
+			if (!getOnkoValkeaKuningasLiikkunut()) {
 				lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
 				lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 				onkoValkeaKuningasLiikkunut = true;
@@ -233,7 +233,7 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			setSiirtovuoro(0);
 			break;
 		case MK:
-			if (!getOnkoMustaKuningasLiikkunut) {
+			if (!getOnkoMustaKuningasLiikkunut()) {
 				lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
 				lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 				onkoMustaKuningasLiikkunut = true;
@@ -279,4 +279,17 @@ bool Asema::getOnkoMustaDTliikkunut() {
 }
 bool Asema::getOnkoMustaKTliikkunut() {
 	return onkoMustaKTliikkunut;
+}
+
+void Asema::annaLaillisetSiirrot(std::list<Siirto>& lista) {
+	for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			Nappula* nappula = lauta[i][j];
+
+			if (nappula != NULL) {
+				Ruutu ruutu(i, j);
+				lauta[i][j]->annaSiirrot(lista, &ruutu, this, siirtovuoro);
+			}
+		}
+	}
 }
