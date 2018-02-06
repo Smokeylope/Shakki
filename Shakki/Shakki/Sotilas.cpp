@@ -8,7 +8,9 @@ void Sotilas::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* ase
 		}		
 	}
 	else {
-		lista.push_back(Siirto(*alkuRuutu,
-			Ruutu(alkuRuutu->getRivi() - 1, alkuRuutu->getSarake())));
+		if (onkoSiirtoMahdollinen(asema, alkuRuutu->getRivi() - 1, alkuRuutu->getSarake())) {
+			lista.push_back(Siirto(*alkuRuutu,
+				Ruutu(alkuRuutu->getRivi() - 1, alkuRuutu->getSarake())));
+		}
 	}
 }
