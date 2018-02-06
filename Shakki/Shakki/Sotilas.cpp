@@ -17,7 +17,7 @@ void Sotilas::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* ase
 			lista.push_back(Siirto(*alkuRuutu, Ruutu(alkuRuutu->getRivi() + 1, alkuRuutu->getSarake() + 1)));
 		}
 		// Onko lyöntimahdollisuutta vasen puoli
-		if (onkoSiirtoMahdollinen(asema, alkuRuutu->getRivi() + 1, alkuRuutu->getSarake() - 1) && asema->lauta[alkuRuutu->getRivi() - 1][alkuRuutu->getSarake() - 1] != NULL) {
+		if (onkoSiirtoMahdollinen(asema, alkuRuutu->getRivi() + 1, alkuRuutu->getSarake() - 1) && asema->lauta[alkuRuutu->getRivi() + 1][alkuRuutu->getSarake() - 1] != NULL) {
 			lista.push_back(Siirto(*alkuRuutu, Ruutu(alkuRuutu->getRivi() + 1, alkuRuutu->getSarake() - 1)));
 		}
 	}
