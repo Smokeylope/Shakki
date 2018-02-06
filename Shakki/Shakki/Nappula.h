@@ -30,4 +30,5 @@ public:
 	void setVari(int);
 	int getVari();
 	virtual void annaSiirrot(std::list<Siirto>& lista, Ruutu*, Asema*, int vari) = 0;
+	bool onkoSiirtoMahdollinen(Asema* asema, int loppuRivi, int loppuSarake);
 };

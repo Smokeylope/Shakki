@@ -1,4 +1,5 @@
 #include "Nappula.h"
+#include "Asema.h"
 
 Nappula::Nappula(std::wstring unicode, int vari, int koodi)
 {
@@ -35,4 +36,18 @@ void Nappula::setVari(int vari)
 int Nappula::getVari()
 {
 	return _vari;
+}
+
+bool Nappula::onkoSiirtoMahdollinen(Asema* asema,int loppuRivi, int loppuSarake) {
+	if (!loppuRivi < 0 && !loppuRivi > 7 && !loppuSarake < 0 && !loppuSarake > 7) {
+		if (!asema->lauta[loppuRivi][loppuSarake]) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
 }
