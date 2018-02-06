@@ -25,7 +25,7 @@ void Torni::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* asema
 	// Oikealle
 	for (int i = alkuRuutu->getSarake() + 1; i < 8; i++) {
 		if (!asema->lauta[alkuRuutu->getRivi()][i]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(alkuRuutu->getRivi(), i)));
 		}
 		else {
 			break;
@@ -35,7 +35,7 @@ void Torni::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* asema
 	// Vasemmalle
 	for (int i = alkuRuutu->getSarake() - 1; i >= 0; i--) {
 		if (!asema->lauta[alkuRuutu->getRivi()][i]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(alkuRuutu->getRivi(), i)));
 		}
 		else {
 			break;
