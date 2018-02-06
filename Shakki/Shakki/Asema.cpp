@@ -15,6 +15,8 @@ Ratsu Asema::mr(L"\u265E", 1, 7);
 Sotilas Asema::ms(L"\u265F", 1, 11);
 
 Asema::Asema(){
+	siirtovuoro = 0;
+
 	// LAUDAN ALUSTUS
 	for(int i = 0; i < 8; i++){
 		for(int j = 0; j < 8; j++){
@@ -286,7 +288,7 @@ void Asema::annaLaillisetSiirrot(std::list<Siirto>& lista) {
 		for (int j = 0; j < 8; j++) {
 			Nappula* nappula = lauta[i][j];
 
-			if (nappula != NULL) {
+			if (nappula != NULL && nappula->getVari() == siirtovuoro) {
 				Ruutu ruutu(i, j);
 				lauta[i][j]->annaSiirrot(lista, &ruutu, this, siirtovuoro);
 			}
