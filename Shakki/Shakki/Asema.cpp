@@ -47,7 +47,7 @@ Asema::Asema(){
 	lauta[7][0] = &mt;
 	lauta[7][1] = &mr;
 	lauta[7][2] = &ml;
-	lauta[7][3] = &md;
+	lauta[3][7] = &md;
 	lauta[7][4] = &mk;
 	lauta[7][5] = &ml;
 	lauta[7][6] = &mr;
@@ -283,15 +283,69 @@ bool Asema::getOnkoMustaKTliikkunut() {
 	return onkoMustaKTliikkunut;
 }
 
-void Asema::annaLaillisetSiirrot(std::list<Siirto>& lista) {
+void Asema::annaLaillisetSiirrot(std::list<Siirto>& lista, bool omaVuoro) {
+	std::list<Siirto> tmpLista;
+
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			Nappula* nappula = lauta[i][j];
+			Ruutu ruutu(i, j);
 
-			if (nappula != NULL && nappula->getVari() == siirtovuoro) {
-				Ruutu ruutu(i, j);
-				lauta[i][j]->annaSiirrot(lista, &ruutu, this, siirtovuoro);
+			if (nappula) {
+				if ((siirtovuoro == 0 && nappula->getKoodi() == VK) || (siirtovuoro == 1 && nappula->getKoodi() == MK)) {
+					kuningasRuudut[siirtovuoro] = ruutu;
+				}
+
+				if (nappula->getVari() == siirtovuoro) {
+					if (omaVuoro) {
+						lauta[i][j]->annaSiirrot(tmpLista, &ruutu, this, siirtovuoro);
+					}
+					else {
+						lauta[i][j]->annaSiirrot(lista, &ruutu, this, siirtovuoro);
+					}
+				}
 			}
 		}
 	}
+
+	if (omaVuoro) {
+		for (std::list<Siirto>::iterator i = tmpLista.begin(); i != tmpLista.end(); i++) {
+			Asema uusiAsema(*this);
+			int alkuRivi = i->getAlkuruutu().getRivi();
+			int alkuSarake = i->getAlkuruutu().getSarake();
+			int loppuRivi = i->getLoppuruutu().getRivi();
+			int loppuSarake = i->getLoppuruutu().getSarake();
+			Nappula* nappula = uusiAsema.lauta[alkuRivi][alkuSarake];
+			uusiAsema.lauta[loppuRivi][loppuSarake] = nappula;
+			uusiAsema.lauta[alkuRivi][alkuSarake] = NULL;
+
+			if (nappula->getKoodi() == VK || nappula->getKoodi() == MK) {
+				kuningasRuudut[siirtovuoro] = Ruutu(loppuRivi, loppuSarake);
+			}
+
+			if (!onkoRuutuUhattu(&uusiAsema, kuningasRuudut[siirtovuoro])) {
+				lista.push_back(*i);
+			}
+		}
+	}
+}
+
+bool Asema::onkoRuutuUhattu(Asema* asema, const Ruutu& ruutu) {
+	asema->siirtovuoro = asema->siirtovuoro == 0 ? 1 : 0;
+	std::list<Siirto> siirrot;
+	asema->annaLaillisetSiirrot(siirrot, false);
+	
+	for (std::list<Siirto>::iterator i = siirrot.begin(); i != siirrot.end(); i++) {
+		if (asema->lauta[i->getAlkuruutu().getRivi()][i->getAlkuruutu().getSarake()]->getKoodi() == ML) {
+			bool asd = true;
+		}
+		if (i->getLoppuruutu() == ruutu) {
+			//siirtovuoro = siirtovuoro == 0 ? 1 : 0;
+			return true;
+		}
+		bool asd = true;
+	}
+
+	//siirtovuoro = siirtovuoro == 0 ? 1 : 0;
+	return false;
 }

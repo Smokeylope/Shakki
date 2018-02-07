@@ -4,8 +4,14 @@
 void Kuningatar::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* asema, int vari) {
 	// Ylös
 	for (int i = alkuRuutu->getRivi() + 1; i < 8; i++) {
-		if (!asema->lauta[i][alkuRuutu->getSarake()]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+		int j = alkuRuutu->getSarake();
+
+		if (!asema->lauta[i][j]) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;
@@ -14,8 +20,14 @@ void Kuningatar::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* 
 
 	// Alas
 	for (int i = alkuRuutu->getRivi() - 1; i >= 0; i--) {
-		if (!asema->lauta[i][alkuRuutu->getSarake()]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+		int j = alkuRuutu->getSarake();
+
+		if (!asema->lauta[i][j]) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;
@@ -23,9 +35,15 @@ void Kuningatar::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* 
 	}
 
 	// Oikealle
-	for (int i = alkuRuutu->getSarake() + 1; i < 8; i++) {
-		if (!asema->lauta[alkuRuutu->getRivi()][i]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+	for (int j = alkuRuutu->getSarake() + 1; j < 8; j++) {
+		int i = alkuRuutu->getRivi();
+
+		if (!asema->lauta[i][j]) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;
@@ -33,9 +51,15 @@ void Kuningatar::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* 
 	}
 
 	// Vasemmalle
-	for (int i = alkuRuutu->getSarake() - 1; i >= 0; i--) {
-		if (!asema->lauta[alkuRuutu->getRivi()][i]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+	for (int j = alkuRuutu->getSarake() - 1; j >= 0; j--) {
+		int i = alkuRuutu->getRivi();
+
+		if (!asema->lauta[i][j]) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;
@@ -47,7 +71,11 @@ void Kuningatar::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* 
 
 	for (int i = alkuRuutu->getRivi() + 1; i < 8 && j < 8; i++, j++) {
 		if (!asema->lauta[i][j]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;
@@ -57,9 +85,13 @@ void Kuningatar::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* 
 	// Alaoikealle
 	j = alkuRuutu->getSarake() + 1;
 
-	for (int i = alkuRuutu->getRivi() - 1; i < 8 && j < 8; i--, j++) {
+	for (int i = alkuRuutu->getRivi() - 1; i >= 0 && j < 8; i--, j++) {
 		if (!asema->lauta[i][j]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;
@@ -69,9 +101,13 @@ void Kuningatar::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* 
 	// Ylävasemmalle
 	j = alkuRuutu->getSarake() - 1;
 
-	for (int i = alkuRuutu->getRivi() + 1; i < 8 && j < 8; i++, j--) {
+	for (int i = alkuRuutu->getRivi() + 1; i < 8 && j >= 0; i++, j--) {
 		if (!asema->lauta[i][j]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;
@@ -81,9 +117,13 @@ void Kuningatar::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* 
 	// Alavasemmalle
 	j = alkuRuutu->getSarake() - 1;
 
-	for (int i = alkuRuutu->getRivi() - 1; i < 8 && j < 8; i--, j--) {
+	for (int i = alkuRuutu->getRivi() - 1; i >= 0 && j >= 0; i--, j--) {
 		if (!asema->lauta[i][j]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;

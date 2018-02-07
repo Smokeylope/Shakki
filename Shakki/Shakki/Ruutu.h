@@ -13,13 +13,4 @@ private:
 	int _rivi;
 };
 
-
-bool operator==(const Ruutu& lhs, const Ruutu& rhs)
-{
-	if (lhs.getRivi() == rhs.getRivi() && lhs.getSarake() == rhs.getSarake()) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
+bool operator==(const Ruutu& lhs, const Ruutu& rhs);

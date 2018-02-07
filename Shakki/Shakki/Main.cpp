@@ -13,7 +13,7 @@ int main()
 		kayttoliittyma.piirraLauta();
 
 		std::list<Siirto> siirrot;
-		asema.annaLaillisetSiirrot(siirrot);
+		asema.annaLaillisetSiirrot(siirrot, true);
 
 		Siirto siirto = kayttoliittyma.annaVastustajanSiirto();
 		asema.paivitaAsema(&siirto);

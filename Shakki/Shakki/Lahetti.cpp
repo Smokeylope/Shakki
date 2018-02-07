@@ -8,7 +8,11 @@ void Lahetti::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* ase
 
 	for (int i = alkuRuutu->getRivi() + 1; i < 8 && j < 8; i++, j++) {
 		if (!asema->lauta[i][j]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;
@@ -18,9 +22,13 @@ void Lahetti::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* ase
 	// Alaoikealle
 	j = alkuRuutu->getSarake() + 1;
 
-	for (int i = alkuRuutu->getRivi() - 1; i < 8 && j < 8; i--, j++) {
+	for (int i = alkuRuutu->getRivi() - 1; i >= 0 && j < 8; i--, j++) {
 		if (!asema->lauta[i][j]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;
@@ -30,9 +38,13 @@ void Lahetti::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* ase
 	// Ylävasemmalle
 	j = alkuRuutu->getSarake() - 1;
 
-	for (int i = alkuRuutu->getRivi() + 1; i < 8 && j < 8; i++, j--) {
+	for (int i = alkuRuutu->getRivi() + 1; i < 8 && j >= 0; i++, j--) {
 		if (!asema->lauta[i][j]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;
@@ -42,9 +54,13 @@ void Lahetti::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* ase
 	// Alavasemmalle
 	j = alkuRuutu->getSarake() - 1;
 
-	for (int i = alkuRuutu->getRivi() - 1; i < 8 && j < 8; i--, j--) {
+	for (int i = alkuRuutu->getRivi() - 1; i >= 0 && j >= 0; i--, j--) {
 		if (!asema->lauta[i][j]) {
-			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, alkuRuutu->getSarake())));
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+		}
+		else if (asema->lauta[i][j]->getVari() != asema->getSiirtovuoro()) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(i, j)));
+			break;
 		}
 		else {
 			break;

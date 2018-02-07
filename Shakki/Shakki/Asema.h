@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include "Kuningas.h"
 #include "Kuningatar.h"
 #include "Lahetti.h"
@@ -33,7 +34,10 @@ public:
 	bool getOnkoMustaKTliikkunut();
 
 	// VIIKKO 3
-	void annaLaillisetSiirrot(std::list<Siirto>& lista);
+	void annaLaillisetSiirrot(std::list<Siirto>& lista, bool omaVuoro);
+
+	// VIIKKO 4
+	bool onkoRuutuUhattu(Asema* asema, const Ruutu& ruutu);
 
 private:
 	static Kuningas vk;
@@ -58,4 +62,7 @@ private:
 	bool onkoValkeaKTliikkunut;
 	bool onkoMustaDTliikkunut;
 	bool onkoMustaKTliikkunut;
+
+	// VIIKKO 4
+	Ruutu kuningasRuudut[2];
 };
