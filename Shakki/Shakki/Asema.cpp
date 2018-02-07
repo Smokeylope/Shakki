@@ -327,6 +327,36 @@ void Asema::annaLaillisetSiirrot(std::list<Siirto>& lista, bool omaVuoro) {
 				lista.push_back(*i);
 			}
 		}
+
+		// TORNITUKSEN TARKASTUS
+
+		// Valkea
+		// Kuninkaan puoli / Lyhyt
+		if (getSiirtovuoro() == 0 && !onkoValkeaKuningasLiikkunut && !onkoValkeaKTliikkunut && lauta[0][5] == NULL && lauta[0][6] == NULL) {
+			if (!onkoRuutuUhattu(this, Ruutu(0, 5)) && (!onkoRuutuUhattu(this, Ruutu(0, 6)))) {
+				lista.push_back(Siirto(true, false));
+			}
+		}
+		// Kuningattaren puoli / Pitkä
+		if (getSiirtovuoro() == 0 && !onkoValkeaKuningasLiikkunut && !onkoValkeaDTliikkunut && lauta[0][1] == NULL && lauta[0][2] == NULL && lauta[0][3] == NULL) {
+			if (!onkoRuutuUhattu(this, Ruutu(0, 1)) && (!onkoRuutuUhattu(this, Ruutu(0, 2)) && (!onkoRuutuUhattu(this, Ruutu(0, 3))))) {
+				lista.push_back(Siirto(false, true));
+			}
+		}
+
+		// Musta
+		// Kuninkaan puoli / Lyhyt
+		if (getSiirtovuoro() == 1 && !onkoMustaKuningasLiikkunut && !onkoMustaKTliikkunut && lauta[7][5] == NULL && lauta[7][6] == NULL) {
+			if (!onkoRuutuUhattu(this, Ruutu(7, 5)) && (!onkoRuutuUhattu(this, Ruutu(7, 6)))) {
+				lista.push_back(Siirto(true, false));
+			}
+		}
+		// Kuningattaren puoli / Pitkä
+		if (getSiirtovuoro() == 1 && !onkoMustaKuningasLiikkunut && !onkoMustaDTliikkunut && lauta[7][1] == NULL && lauta[7][2] == NULL && lauta[7][3] == NULL) {
+			if (!onkoRuutuUhattu(this, Ruutu(7, 1)) && (!onkoRuutuUhattu(this, Ruutu(7, 2)) && (!onkoRuutuUhattu(this, Ruutu(7, 3))))) {
+				lista.push_back(Siirto(false, true));
+			}
+		}
 	}
 }
 

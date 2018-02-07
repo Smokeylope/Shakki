@@ -56,12 +56,12 @@ private:
 
 	// VIIKKO 2
 	int siirtovuoro;
-	bool onkoValkeaKuningasLiikkunut;
-	bool onkoMustaKuningasLiikkunut;
-	bool onkoValkeaDTliikkunut;
-	bool onkoValkeaKTliikkunut;
-	bool onkoMustaDTliikkunut;
-	bool onkoMustaKTliikkunut;
+	bool onkoValkeaKuningasLiikkunut = false;
+	bool onkoMustaKuningasLiikkunut = false;
+	bool onkoValkeaDTliikkunut = false;
+	bool onkoValkeaKTliikkunut = false;
+	bool onkoMustaDTliikkunut = false;
+	bool onkoMustaKTliikkunut = false;
 
 	// VIIKKO 4
 	Ruutu kuningasRuudut[2];
