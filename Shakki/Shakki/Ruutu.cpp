@@ -5,11 +5,11 @@ Ruutu::Ruutu(int rivi, int sarake) {
 	_sarake = sarake;
 }
 
-int Ruutu::getRivi() {
+int Ruutu::getRivi() const {
 	return _rivi;
 }
 
-int Ruutu::getSarake() {
+int Ruutu::getSarake() const {
 	return _sarake;
 }
 
