@@ -7,10 +7,10 @@ public:
 	Siirto(Ruutu, Ruutu);
 	Siirto(){}
 	Siirto(bool lyhytLinna, bool pitkaLinna); // Poikkeussiirto linnoitusta varten
-	Ruutu getAlkuruutu();
-	Ruutu getLoppuruutu();
-	bool onkoLyhytLinna();
-	bool onkoPitkaLinna();
+	Ruutu getAlkuruutu() const;
+	Ruutu getLoppuruutu() const;
+	bool onkoLyhytLinna() const;
+	bool onkoPitkaLinna() const;
 private:
 	Ruutu _alkuRuutu;
 	Ruutu _loppuRuutu;
@@ -18,3 +18,5 @@ private:
 	bool _lyhytLinna;
 	bool _pitkaLinna;
 };
+
+bool operator==(const Siirto& lhs, const Siirto& rhs);

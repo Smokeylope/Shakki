@@ -14,12 +14,22 @@ int main()
 
 		std::list<Siirto> siirrot;
 		asema.annaLaillisetSiirrot(siirrot, true);
+		bool siirtoLaillinen = false;
 
-		Siirto siirto = kayttoliittyma.annaVastustajanSiirto();
-		asema.paivitaAsema(&siirto);
+		while (!siirtoLaillinen) {
+			Siirto siirto = kayttoliittyma.annaVastustajanSiirto();
+
+			for (std::list<Siirto>::iterator i = siirrot.begin(); i != siirrot.end(); i++) {
+				if ((*i == siirto)) {
+					asema.paivitaAsema(&(*i));
+					siirtoLaillinen = true;
+					break;
+				}
+			}
+		}
+		
 		system("cls");
 	}
-
 
 	return 0;
 }

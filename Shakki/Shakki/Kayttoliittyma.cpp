@@ -55,7 +55,9 @@ void Kayttoliittyma::piirraLauta() {
 }
 
 Siirto Kayttoliittyma::annaVastustajanSiirto() {
+	std::wcout << _asema->getSiirtovuoro() << '\n';
 	std::wcout << "Anna siirto:\n";
+
 
 	char alkuSarake = 0;
 	char alkuRivi = 0;
@@ -67,7 +69,13 @@ Siirto Kayttoliittyma::annaVastustajanSiirto() {
 		std::string siirto;
 		std::cin >> siirto;
 
-		if (siirto.length() == 6) {
+		if (siirto == "O-O") {
+			return Siirto(true, false);
+		}
+		else if (siirto == "O-O-O") {
+			return Siirto(false, true);
+		}
+		else if (siirto.length() == 6) {
 			alkuSarake = siirto[1];
 			alkuRivi = siirto[2];
 			loppuSarake = siirto[4];

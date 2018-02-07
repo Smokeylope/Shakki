@@ -26,12 +26,12 @@ Asema::Asema(){
 
 	// Asetetaan valkoiset nappulat laudalle
 	lauta[0][0] = &vt;
-	lauta[0][1] = &vr;
-	lauta[0][2] = &vl;
-	lauta[0][3] = &vd;
+	lauta[3][1] = &vr;
+	lauta[3][2] = &vl;
+	lauta[3][3] = &vd;
 	lauta[0][4] = &vk;
-	lauta[0][5] = &vl;
-	lauta[0][6] = &vr;
+	lauta[3][5] = &vl;
+	lauta[3][6] = &vr;
 	lauta[0][7] = &vt;
 	// Sotilaat
 	lauta[1][0] = &vs;
@@ -45,12 +45,12 @@ Asema::Asema(){
 
 	// Asetetaan mustat nappulat laudalle
 	lauta[7][0] = &mt;
-	lauta[7][1] = &mr;
-	lauta[7][2] = &ml;
-	lauta[3][7] = &md;
+	lauta[5][1] = &mr;
+	lauta[5][2] = &ml;
+	lauta[5][7] = &md;
 	lauta[7][4] = &mk;
-	lauta[7][5] = &ml;
-	lauta[7][6] = &mr;
+	lauta[5][5] = &ml;
+	lauta[5][6] = &mr;
 	lauta[7][7] = &mt;
 	// Sotilaat
 	lauta[6][0] = &ms;
@@ -96,9 +96,9 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			case 1:
 				if (!getOnkoMustaKTliikkunut() && !getOnkoMustaKuningasLiikkunut()) {
 
-					lauta[7][6] = &vk;
+					lauta[7][6] = &mk;
 					lauta[7][4] = NULL;
-					lauta[7][5] = &vt;
+					lauta[7][5] = &mt;
 					lauta[7][7] = NULL;
 
 					onkoMustaKuningasLiikkunut = true;
@@ -361,21 +361,35 @@ void Asema::annaLaillisetSiirrot(std::list<Siirto>& lista, bool omaVuoro) {
 }
 
 bool Asema::onkoRuutuUhattu(Asema* asema, const Ruutu& ruutu) {
-	asema->siirtovuoro = asema->siirtovuoro == 0 ? 1 : 0;
+	if (asema->siirtovuoro == 0) {
+		asema->siirtovuoro = 1;
+	}
+	else {
+		asema->siirtovuoro = 0;
+	}
+	//asema->siirtovuoro = asema->siirtovuoro == 0 ? 1 : 0;
 	std::list<Siirto> siirrot;
 	asema->annaLaillisetSiirrot(siirrot, false);
 	
 	for (std::list<Siirto>::iterator i = siirrot.begin(); i != siirrot.end(); i++) {
-		if (asema->lauta[i->getAlkuruutu().getRivi()][i->getAlkuruutu().getSarake()]->getKoodi() == ML) {
-			bool asd = true;
-		}
 		if (i->getLoppuruutu() == ruutu) {
 			//siirtovuoro = siirtovuoro == 0 ? 1 : 0;
+			if (asema->siirtovuoro == 0) {
+				asema->siirtovuoro = 1;
+			}
+			else {
+				asema->siirtovuoro = 0;
+			}
 			return true;
 		}
-		bool asd = true;
 	}
 
 	//siirtovuoro = siirtovuoro == 0 ? 1 : 0;
+	if (asema->siirtovuoro == 0) {
+		asema->siirtovuoro = 1;
+	}
+	else {
+		asema->siirtovuoro = 0;
+	}
 	return false;
 }
