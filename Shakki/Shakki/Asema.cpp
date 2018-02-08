@@ -27,7 +27,7 @@ Asema::Asema(){
 	}
 
 	// Asetetaan valkoiset nappulat laudalle
-	lauta[0][0] = &vt;
+	lauta[3][0] = &vt;
 	lauta[0][1] = &vr;
 	lauta[0][2] = &vl;
 	lauta[0][3] = &vd;
@@ -36,7 +36,7 @@ Asema::Asema(){
 	lauta[0][6] = &vr;
 	lauta[0][7] = &vt;
 	// Sotilaat
-	lauta[1][0] = &vs;
+	lauta[1][0] = &ms;
 	lauta[1][1] = &vs;
 	lauta[1][2] = &vs;
 	lauta[1][3] = &vs;
