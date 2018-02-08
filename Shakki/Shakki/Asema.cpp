@@ -78,15 +78,11 @@ void Asema::paivitaAsema(Siirto* siirto) {
 	int vuorossaOlevaPelaaja = getSiirtovuoro();
 
 	if (valittuNappula->getKoodi() == VS && siirto->getAlkuruutu().getRivi() == 1 && siirto->getLoppuruutu().getRivi() == 3){
-		lauta[siirto->getLoppuruutu().getRivi()][siirto->getLoppuruutu().getSarake()] = &vso;
-		lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] == NULL;
-		setSiirtovuoro(1);
+		valittuNappula = &vso;
 	}
 
 	if (valittuNappula->getKoodi() == MS && siirto->getAlkuruutu().getRivi() == 6 && siirto->getLoppuruutu().getRivi() == 4) {
-		lauta[siirto->getLoppuruutu().getRivi()][siirto->getLoppuruutu().getSarake()] = &mso;
-		lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] == NULL;
-		setSiirtovuoro(0);
+		valittuNappula = &mso
 	}
 	// Jos kyseess‰ on linnoitus k‰yd‰‰n l‰pi iffi, muussa tapauksessa tehd‰‰n elsen sis‰ll‰ oleva switchi
 	//Lyhyt linnoitus
@@ -210,6 +206,12 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(1);
 			break;
+		case VSO:
+			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] == NULL;
+			setSiirtovuoro(1);
+			break;
+
 
 			// MUSTAT
 		case MT:
@@ -260,6 +262,11 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			}
 			break;
 		case MS:
+			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
+			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
+			setSiirtovuoro(0);
+			break;
+		case MSO:
 			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
 			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(0);
