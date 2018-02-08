@@ -20,6 +20,14 @@ void Sotilas::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* ase
 		if (onkoSiirtoMahdollinen(asema, alkuRuutu->getRivi() + 1, alkuRuutu->getSarake() - 1) && asema->lauta[alkuRuutu->getRivi() + 1][alkuRuutu->getSarake() - 1] != NULL) {
 			lista.push_back(Siirto(*alkuRuutu, Ruutu(alkuRuutu->getRivi() + 1, alkuRuutu->getSarake() - 1)));
 		}
+		// Onko ohestalyöntimahdollisuutta oikea puoli
+		if (onkoSiirtoMahdollinen(asema, alkuRuutu->getRivi(), alkuRuutu->getSarake() + 1) && asema->lauta[alkuRuutu->getRivi()][alkuRuutu->getSarake() + 1]->getKoodi() == MSO) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(alkuRuutu->getRivi() + 1, alkuRuutu->getSarake() + 1)));
+		}
+		// Onko ohestalyöntimahdollisuutta vasen puoli
+		if (onkoSiirtoMahdollinen(asema, alkuRuutu->getRivi(), alkuRuutu->getSarake() - 1) && asema->lauta[alkuRuutu->getRivi()][alkuRuutu->getSarake() - 1]->getKoodi() == MSO) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(alkuRuutu->getRivi() + 1, alkuRuutu->getSarake() - 1)));
+		}
 	}
 	else {
 		if (onkoSiirtoMahdollinen(asema, alkuRuutu->getRivi() - 1, alkuRuutu->getSarake()) && asema->lauta[alkuRuutu->getRivi() - 1][alkuRuutu->getSarake()] == NULL) {
@@ -37,6 +45,14 @@ void Sotilas::annaSiirrot(std::list<Siirto>& lista, Ruutu* alkuRuutu, Asema* ase
 		}
 		// Onko lyöntimahdollisuutta vasen puoli
 		if (onkoSiirtoMahdollinen(asema, alkuRuutu->getRivi() - 1, alkuRuutu->getSarake() - 1) && asema->lauta[alkuRuutu->getRivi() - 1][alkuRuutu->getSarake() -1] != NULL) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(alkuRuutu->getRivi() - 1, alkuRuutu->getSarake() - 1)));
+		}
+		// Onko ohestalyöntimahdollisuutta oikea puoli
+		if (onkoSiirtoMahdollinen(asema, alkuRuutu->getRivi(), alkuRuutu->getSarake() + 1) && asema->lauta[alkuRuutu->getRivi()][alkuRuutu->getSarake() + 1]->getKoodi() == VSO) {
+			lista.push_back(Siirto(*alkuRuutu, Ruutu(alkuRuutu->getRivi() - 1, alkuRuutu->getSarake() + 1)));
+		}
+		// Onko ohestalyöntimahdollisuutta vasen puoli
+		if (onkoSiirtoMahdollinen(asema, alkuRuutu->getRivi(), alkuRuutu->getSarake() - 1) && asema->lauta[alkuRuutu->getRivi()][alkuRuutu->getSarake() - 1]->getKoodi() == VSO) {
 			lista.push_back(Siirto(*alkuRuutu, Ruutu(alkuRuutu->getRivi() - 1, alkuRuutu->getSarake() - 1)));
 		}
 	}
