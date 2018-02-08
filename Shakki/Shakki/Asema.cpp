@@ -49,7 +49,7 @@ Asema::Asema(){
 	lauta[7][0] = &mt;
 	lauta[7][1] = &mr;
 	lauta[7][2] = &ml;
-	lauta[7][7] = &md;
+	lauta[7][3] = &md;
 	lauta[7][4] = &mk;
 	lauta[7][5] = &ml;
 	lauta[7][6] = &mr;
