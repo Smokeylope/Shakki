@@ -11,7 +11,8 @@ class Asema;
 enum
 {
 	VT,VR,VL,VD,VK,VS,
-	MT,MR,ML,MD,MK,MS
+	MT,MR,ML,MD,MK,MS,
+	MSO,VSO // Ohestalyönti
 };
 
 class Nappula{
