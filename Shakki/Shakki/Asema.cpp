@@ -6,7 +6,7 @@ Torni Asema::vt(L"\u2656", 0, 0);
 Lahetti Asema::vl(L"\u2657", 0, 2);
 Ratsu Asema::vr(L"\u2658", 0, 1);
 Sotilas Asema::vs(L"\u2659", 0, 5);
-Sotilas Asema::vso(L"\u2659", 0, 13);
+Sotilas Asema::vso(L"\u265F", 0, 13);
 
 Kuningas Asema::mk(L"\u265A", 1, 10);
 Kuningatar Asema::md(L"\u265B", 1, 9);
@@ -14,7 +14,7 @@ Torni Asema::mt(L"\u265C", 1, 6);
 Lahetti Asema::ml(L"\u265D", 1, 8);
 Ratsu Asema::mr(L"\u265E", 1, 7);
 Sotilas Asema::ms(L"\u265F", 1, 11);
-Sotilas Asema::mso(L"\u265F", 1, 12);
+Sotilas Asema::mso(L"\u2659", 1, 12);
 
 Asema::Asema(){
 	siirtovuoro = 0;
@@ -82,7 +82,7 @@ void Asema::paivitaAsema(Siirto* siirto) {
 	}
 
 	if (valittuNappula->getKoodi() == MS && siirto->getAlkuruutu().getRivi() == 6 && siirto->getLoppuruutu().getRivi() == 4) {
-		valittuNappula = &mso
+		valittuNappula = &mso;
 	}
 	// Jos kyseess‰ on linnoitus k‰yd‰‰n l‰pi iffi, muussa tapauksessa tehd‰‰n elsen sis‰ll‰ oleva switchi
 	//Lyhyt linnoitus
@@ -208,7 +208,7 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			break;
 		case VSO:
 			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
-			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] == NULL;
+			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(1);
 			break;
 
