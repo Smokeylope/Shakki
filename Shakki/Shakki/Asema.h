@@ -46,6 +46,7 @@ private:
 	static Lahetti vl;
 	static Ratsu vr;
 	static Sotilas vs;
+	static Sotilas vso;
 
 	static Kuningas mk;
 	static Kuningatar md;
@@ -53,6 +54,7 @@ private:
 	static Lahetti ml;
 	static Ratsu mr;
 	static Sotilas ms;
+	static Sotilas mso;
 
 	// VIIKKO 2
 	int siirtovuoro;

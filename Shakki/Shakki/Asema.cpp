@@ -6,6 +6,7 @@ Torni Asema::vt(L"\u2656", 0, 0);
 Lahetti Asema::vl(L"\u2657", 0, 2);
 Ratsu Asema::vr(L"\u2658", 0, 1);
 Sotilas Asema::vs(L"\u2659", 0, 5);
+Sotilas Asema::vso(L"\u2659", 0, 13);
 
 Kuningas Asema::mk(L"\u265A", 1, 10);
 Kuningatar Asema::md(L"\u265B", 1, 9);
@@ -13,6 +14,7 @@ Torni Asema::mt(L"\u265C", 1, 6);
 Lahetti Asema::ml(L"\u265D", 1, 8);
 Ratsu Asema::mr(L"\u265E", 1, 7);
 Sotilas Asema::ms(L"\u265F", 1, 11);
+Sotilas Asema::mso(L"\u265F", 1, 12);
 
 Asema::Asema(){
 	siirtovuoro = 0;
@@ -67,7 +69,6 @@ Asema::Asema(){
   // VIIKKO 2
 
 void Asema::paivitaAsema(Siirto* siirto) {
-
 		// mikä nappula on alkuruudussa
 	Ruutu alkuRuutu = siirto->getAlkuruutu();
 	Ruutu loppuRuutu = siirto->getLoppuruutu();
@@ -76,6 +77,17 @@ void Asema::paivitaAsema(Siirto* siirto) {
 	valittuNappula = lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()];
 	int vuorossaOlevaPelaaja = getSiirtovuoro();
 
+	if (valittuNappula->getKoodi() == VS && siirto->getAlkuruutu().getRivi() == 1 && siirto->getLoppuruutu().getRivi() == 3){
+		lauta[siirto->getLoppuruutu().getRivi()][siirto->getLoppuruutu().getSarake()] = &vso;
+		lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] == NULL;
+		setSiirtovuoro(1);
+	}
+
+	if (valittuNappula->getKoodi() == MS && siirto->getAlkuruutu().getRivi() == 6 && siirto->getLoppuruutu().getRivi() == 4) {
+		lauta[siirto->getLoppuruutu().getRivi()][siirto->getLoppuruutu().getSarake()] = &mso;
+		lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] == NULL;
+		setSiirtovuoro(0);
+	}
 	// Jos kyseessä on linnoitus käydään läpi iffi, muussa tapauksessa tehdään elsen sisällä oleva switchi
 	//Lyhyt linnoitus
 	if (siirto->onkoLyhytLinna() == true) {
