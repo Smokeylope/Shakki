@@ -322,6 +322,13 @@ void Asema::annaLaillisetSiirrot(std::list<Siirto>& lista, bool omaVuoro) {
 					else {
 						lauta[i][j]->annaSiirrot(lista, &ruutu, this, siirtovuoro);
 					}
+					// Jos nappula on ohestalyötävä muutetaan se takaisin normaaliksi sotilaaksi
+					if (nappula->getKoodi() == VSO) {
+						lauta[i][j] = &vs;
+					}
+					if (nappula->getKoodi() == MSO) {
+						lauta[i][j] = &ms;
+					}
 				}
 			}
 		}
