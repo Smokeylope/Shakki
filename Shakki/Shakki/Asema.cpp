@@ -202,6 +202,9 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			}
 			break;
 		case VS:
+			if (loppuRuutu.getSarake() != alkuRuutu.getSarake() && lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] == NULL) {
+				lauta[loppuRuutu.getRivi() - 1][loppuRuutu.getSarake()] = NULL;
+			}
 			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
 			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(1);
@@ -262,6 +265,9 @@ void Asema::paivitaAsema(Siirto* siirto) {
 			}
 			break;
 		case MS:
+			if (loppuRuutu.getSarake() != alkuRuutu.getSarake() && lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] == NULL) {
+				lauta[loppuRuutu.getRivi() + 1][loppuRuutu.getSarake()] = NULL;
+			}
 			lauta[loppuRuutu.getRivi()][loppuRuutu.getSarake()] = valittuNappula;
 			lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()] = NULL;
 			setSiirtovuoro(0);
