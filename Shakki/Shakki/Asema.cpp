@@ -26,12 +26,12 @@ Asema::Asema(){
 
 	// Asetetaan valkoiset nappulat laudalle
 	lauta[0][0] = &vt;
-	lauta[3][1] = &vr;
-	lauta[3][2] = &vl;
-	lauta[3][3] = &vd;
+	lauta[0][1] = &vr;
+	lauta[0][2] = &vl;
+	lauta[0][3] = &vd;
 	lauta[0][4] = &vk;
-	lauta[3][5] = &vl;
-	lauta[3][6] = &vr;
+	lauta[0][5] = &vl;
+	lauta[0][6] = &vr;
 	lauta[0][7] = &vt;
 	// Sotilaat
 	lauta[1][0] = &vs;
@@ -45,12 +45,12 @@ Asema::Asema(){
 
 	// Asetetaan mustat nappulat laudalle
 	lauta[7][0] = &mt;
-	lauta[5][1] = &mr;
-	lauta[5][2] = &ml;
-	lauta[5][7] = &md;
+	lauta[7][1] = &mr;
+	lauta[7][2] = &ml;
+	lauta[7][7] = &md;
 	lauta[7][4] = &mk;
-	lauta[5][5] = &ml;
-	lauta[5][6] = &mr;
+	lauta[7][5] = &ml;
+	lauta[7][6] = &mr;
 	lauta[7][7] = &mt;
 	// Sotilaat
 	lauta[6][0] = &ms;
