@@ -28,41 +28,41 @@ Asema::Asema(){
 
 	// Asetetaan valkoiset nappulat laudalle
 	lauta[0][0] = &vt;
-	/*lauta[0][1] = &vr;
+	lauta[0][1] = &vr;
 	lauta[0][2] = &vl;
 	lauta[0][3] = &vd;
 	lauta[0][4] = &vk;
 	lauta[0][5] = &vl;
 	lauta[0][6] = &vr;
-	lauta[0][7] = &vt;*/
+	lauta[0][7] = &vt;
 	// Sotilaat
-	/*lauta[1][0] = &vs;
+	lauta[1][0] = &vs;
 	lauta[1][1] = &vs;
-	lauta[1][2] = &vs;*/
+	lauta[1][2] = &vs;
 	lauta[1][3] = &vs;
-	/*lauta[1][4] = &vs;
+	lauta[1][4] = &vs;
 	lauta[1][5] = &vs;
 	lauta[1][6] = &vs;
-	lauta[1][7] = &vs;*/
+	lauta[1][7] = &vs;
 
 	// Asetetaan mustat nappulat laudalle
-	/*lauta[7][0] = &mt;
+	lauta[7][0] = &mt;
 	lauta[7][1] = &mr;
 	lauta[7][2] = &ml;
 	lauta[7][3] = &md;
 	lauta[7][4] = &mk;
 	lauta[7][5] = &ml;
-	lauta[7][6] = &mr;*/
+	lauta[7][6] = &mr;
 	lauta[7][7] = &mt;
 	// Sotilaat
-	/*lauta[6][0] = &ms;
+	lauta[6][0] = &ms;
 	lauta[6][1] = &ms;
-	lauta[6][2] = &ms;*/
+	lauta[6][2] = &ms;
 	lauta[6][3] = &ms;
-	/*lauta[6][4] = &ms;
+	lauta[6][4] = &ms;
 	lauta[6][5] = &ms;
 	lauta[6][6] = &ms;
-	lauta[6][7] = &ms;*/
+	lauta[6][7] = &ms;
 } // ASEMA KONSTRUKTORI LOPPU
 
 
@@ -547,9 +547,9 @@ double Asema::evaluoi() {
 		}
 	}
 
-	if (siirtovuoro == 1) {
+	/*if (siirtovuoro == 1) {
 		evaluointiArvo = -evaluointiArvo;
-	}
+	}*/
 
 	return evaluointiArvo;
 }

@@ -11,23 +11,31 @@ int main()
 	while (true) {
 		kayttoliittyma.piirraLauta();
 
-		/*std::list<Siirto> siirrot;
-		asema.annaLaillisetSiirrot(siirrot, true);
-		bool siirtoLaillinen = false;
+		if (asema.getSiirtovuoro() == 0) {
+			//MinMaxPaluu paluu = asema.maxi(2, &asema);
+			//asema.paivitaAsema(&paluu.parasSiirto);
 
-		while (!siirtoLaillinen) {
-			Siirto siirto = kayttoliittyma.annaVastustajanSiirto();
+			std::list<Siirto> siirrot;
+			asema.annaLaillisetSiirrot(siirrot, true);
+			bool siirtoLaillinen = false;
 
-			for (std::list<Siirto>::iterator i = siirrot.begin(); i != siirrot.end(); i++) {
-				if ((*i == siirto)) {
-					asema.paivitaAsema(&(*i));
-					siirtoLaillinen = true;
-					break;
-				}
-			}		
-		}*/
-		MinMaxPaluu paluu = asema.maxi(1, &asema);
-		asema.paivitaAsema(&paluu.parasSiirto);
+			while (!siirtoLaillinen) {
+				Siirto siirto = kayttoliittyma.annaVastustajanSiirto();
+
+				for (std::list<Siirto>::iterator i = siirrot.begin(); i != siirrot.end(); i++) {
+					if ((*i == siirto)) {
+						asema.paivitaAsema(&(*i));
+						siirtoLaillinen = true;
+						break;
+					}
+				}		
+			}
+		}
+		else {
+			MinMaxPaluu paluu = asema.mini(2, &asema);
+			asema.paivitaAsema(&paluu.parasSiirto);
+		}
+
 		system("cls");
 	}
 
