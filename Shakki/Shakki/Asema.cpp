@@ -445,6 +445,7 @@ double Asema::evaluoi() {
 		for (int j = 0; j < 8; j++) {
 			if (lauta[i][j]) {
 				evaluointiArvo += materiaaliArvot[lauta[i][j]->getKoodi()] / abs(((double) i) - 3.5);
+				evaluointiArvo += materiaaliArvot[lauta[i][j]->getKoodi()] / abs(((double)j) - 3.5);
 			}
 		}
 	}
