@@ -26,7 +26,7 @@ int main()
 				}
 			}		
 		}*/
-		MinMaxPaluu paluu = asema.maxi(2, &asema);
+		MinMaxPaluu paluu = asema.maxi(1, &asema);
 		asema.paivitaAsema(&paluu.parasSiirto);
 		system("cls");
 	}
