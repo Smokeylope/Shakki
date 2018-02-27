@@ -443,8 +443,8 @@ double Asema::evaluoi() {
 
 	double materiaaliArvot[14] = {
 		500, 320, 330, 900, 20000, 100,		// Valkeat
-		500, 320, 330, 900, 20000, 100,	// Mustat
-		100, 100							// Ohestalyönti
+		-500, -320, -330, -900, -20000, -100,	// Mustat
+		-100, 100							// Ohestalyönti
 	};
 
 	double ratsuTaulukko[64] =
@@ -531,7 +531,13 @@ double Asema::evaluoi() {
 				// Ensin lasketaan materiaaliarvo
 				evaluointiArvo += (materiaaliArvot[lauta[i][j]->getKoodi()]);
 				// Sitten lisätään evaluointiarvoon ruudun arvo
-				evaluointiArvo += taulukonRuutujenArvot[lauta[i][j]->getKoodi()][i * 8 + j];
+
+				if (siirtovuoro == 0) {
+					evaluointiArvo += taulukonRuutujenArvot[lauta[i][j]->getKoodi()][(7 - i) * 8 + j];
+				}
+				else {
+					evaluointiArvo -= taulukonRuutujenArvot[lauta[i][j]->getKoodi()][i * 8 + j];
+				}				
 			}
 
 		}
