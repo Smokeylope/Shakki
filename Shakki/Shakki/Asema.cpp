@@ -72,18 +72,16 @@ void Asema::paivitaAsema(Siirto* siirto) {
 		// mikä nappula on alkuruudussa
 	Ruutu alkuRuutu = siirto->getAlkuruutu();
 	Ruutu loppuRuutu = siirto->getLoppuruutu();
+
+	if (alkuRuutu.getRivi() < 0)
+	{
+		bool asd = true;
+	}
 			// jos joku alla olevista niin päivitä
 	Nappula *valittuNappula = NULL;
 	valittuNappula = lauta[alkuRuutu.getRivi()][alkuRuutu.getSarake()];
 	int vuorossaOlevaPelaaja = getSiirtovuoro();
 
-	if (valittuNappula->getKoodi() == VS && siirto->getAlkuruutu().getRivi() == 1 && siirto->getLoppuruutu().getRivi() == 3){
-		valittuNappula = &vso;
-	}
-
-	if (valittuNappula->getKoodi() == MS && siirto->getAlkuruutu().getRivi() == 6 && siirto->getLoppuruutu().getRivi() == 4) {
-		valittuNappula = &mso;
-	}
 	// Jos kyseessä on linnoitus käydään läpi iffi, muussa tapauksessa tehdään elsen sisällä oleva switchi
 	//Lyhyt linnoitus
 	if (siirto->onkoLyhytLinna() == true) {
@@ -151,6 +149,14 @@ void Asema::paivitaAsema(Siirto* siirto) {
 		
 	}
 	else {
+		if (valittuNappula->getKoodi() == VS && siirto->getAlkuruutu().getRivi() == 1 && siirto->getLoppuruutu().getRivi() == 3){
+			valittuNappula = &vso;
+		}
+
+		if (valittuNappula->getKoodi() == MS && siirto->getAlkuruutu().getRivi() == 6 && siirto->getLoppuruutu().getRivi() == 4) {
+			valittuNappula = &mso;
+		}
+
 		// Valitaan oikea tapahtuma switchissä, ELI TÄSSÄ ON ASEMAN PÄIVITYS
 		switch (valittuNappula->getKoodi()) {
 			//VALKOISET
@@ -444,7 +450,8 @@ double Asema::evaluoi() {
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			if (lauta[i][j]) {
-				evaluointiArvo += materiaaliArvot[lauta[i][j]->getKoodi()] / abs(((double) i) - 3.5);
+				evaluointiArvo += (materiaaliArvot[lauta[i][j]->getKoodi()] / abs(((double) i) - 3.5))
+				/ abs(((double) j) - 3.5);
 			}
 		}
 	}
