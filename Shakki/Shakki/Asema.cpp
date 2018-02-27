@@ -442,17 +442,98 @@ double Asema::evaluoi() {
 	double evaluointiArvo = 0.0;
 
 	double materiaaliArvot[14] = {
-		5.0, 3.0, 3.25, 9.0, 0.0, 1.0,		// Valkeat
-		-5.0, -3.0, -3.25, -9.0, 0.0, -1.0,	// Mustat
-		-1.0, 1.0							// Ohestalyönti
+		500, 320, 330, 900, 20000, 100,		// Valkeat
+		500, 320, 330, 900, 20000, 100,	// Mustat
+		100, 100							// Ohestalyönti
+	};
+
+	double ratsuTaulukko[64] =
+	{
+		-50,-40,-30,-30,-30,-30,-40,-50,
+		-40,-20,  0,  0,  0,  0,-20,-40,
+		-30,  0, 10, 15, 15, 10,  0,-30,
+		-30,  5, 15, 20, 20, 15,  5,-30,
+		-30,  0, 15, 20, 20, 15,  0,-30,
+		-30,  5, 10, 15, 15, 10,  5,-30,
+		-40,-20,  0,  5,  5,  0,-20,-40,
+		-50,-40,-30,-30,-30,-30,-40,-50
+	};
+
+	double sotilasTaulukko[64] =
+	{
+		0,  0,  0,  0,  0,  0,  0,  0,
+		50, 50, 50, 50, 50, 50, 50, 50,
+		10, 10, 20, 30, 30, 20, 10, 10,
+		5,  5, 10, 25, 25, 10,  5,  5,
+		0,  0,  0, 20, 20,  0,  0,  0,
+		5, -5,-10,  0,  0,-10, -5,  5,
+		5, 10, 10,-20,-20, 10, 10,  5,
+		0,  0,  0,  0,  0,  0,  0,  0
+	};
+
+	double lahettiTaulukko[64] =
+	{
+		-20,-10,-10,-10,-10,-10,-10,-20,
+		-10,  0,  0,  0,  0,  0,  0,-10,
+		-10,  0,  5, 10, 10,  5,  0,-10,
+		-10,  5,  5, 10, 10,  5,  5,-10,
+		-10,  0, 10, 10, 10, 10,  0,-10,
+		-10, 10, 10, 10, 10, 10, 10,-10,
+		-10,  5,  0,  0,  0,  0,  5,-10,
+		-20,-10,-10,-10,-10,-10,-10,-20	
+	};
+
+	double torniTaulukko[64] =
+	{
+		0,  0,  0,  0,  0,  0,  0,  0,
+		5, 10, 10, 10, 10, 10, 10,  5,
+		-5,  0,  0,  0,  0,  0,  0, -5,
+		-5,  0,  0,  0,  0,  0,  0, -5,
+		-5,  0,  0,  0,  0,  0,  0, -5,
+		-5,  0,  0,  0,  0,  0,  0, -5,
+		-5,  0,  0,  0,  0,  0,  0, -5,
+		0,  0,  0,  5,  5,  0,  0,  0
+	};
+
+	double daamiTaulukko[64] =
+	{
+		-20,-10,-10, -5, -5,-10,-10,-20,
+		-10,  0,  0,  0,  0,  0,  0,-10,
+		-10,  0,  5,  5,  5,  5,  0,-10,
+		-5,  0,  5,  5,  5,  5,  0, -5,
+		0,  0,  5,  5,  5,  5,  0, -5,
+		-10,  5,  5,  5,  5,  5,  0,-10,
+		-10,  0,  5,  0,  0,  0,  0,-10,
+		-20,-10,-10, -5, -5,-10,-10,-20
+	};
+
+	double kuningasTaulukko[64] =
+	{
+		-30,-40,-40,-50,-50,-40,-40,-30,
+		-30,-40,-40,-50,-50,-40,-40,-30,
+		-30,-40,-40,-50,-50,-40,-40,-30,
+		-30,-40,-40,-50,-50,-40,-40,-30,
+		-20,-30,-30,-40,-40,-30,-30,-20,
+		-10,-20,-20,-20,-20,-20,-20,-10,
+		20, 20,  0,  0,  0,  0, 20, 20,
+		20, 30, 10,  0,  0, 10, 30, 20
+	};
+
+	double* taulukonRuutujenArvot[14] = {
+		torniTaulukko, ratsuTaulukko, lahettiTaulukko, daamiTaulukko, kuningasTaulukko, sotilasTaulukko,	// Valkeat
+		torniTaulukko, ratsuTaulukko, lahettiTaulukko, daamiTaulukko, kuningasTaulukko, sotilasTaulukko,	// Mustat
+		sotilasTaulukko, sotilasTaulukko																	// Ohestalyönti
 	};
 
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
 			if (lauta[i][j]) {
-				evaluointiArvo += (materiaaliArvot[lauta[i][j]->getKoodi()] / abs(((double) i) - 3.5))
-				/ abs(((double) j) - 3.5);
+				// Ensin lasketaan materiaaliarvo
+				evaluointiArvo += (materiaaliArvot[lauta[i][j]->getKoodi()]);
+				// Sitten lisätään evaluointiarvoon ruudun arvo
+				evaluointiArvo += taulukonRuutujenArvot[lauta[i][j]->getKoodi()][i * 8 + j];
 			}
+
 		}
 	}
 
