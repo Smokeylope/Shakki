@@ -55,7 +55,8 @@ void Kayttoliittyma::piirraLauta() {
 }
 
 Siirto Kayttoliittyma::annaVastustajanSiirto() {
-	std::wcout << _asema->getSiirtovuoro() << '\n';
+	std::wcout << "Siirtovuoro: " << _asema->getSiirtovuoro() << '\n';
+	std::wcout << "Evaluointiarvo: " << _asema->evaluoi() << '\n';
 	std::wcout << "Anna siirto:\n";
 
 

@@ -7,6 +7,7 @@
 #include "Torni.h"
 #include "Ratsu.h"
 #include "Sotilas.h"
+#include "MinMaxPaluu.h"
 
 /*class Nappula;
 class Kuningas : public Nappula;
@@ -38,6 +39,11 @@ public:
 
 	// VIIKKO 4
 	bool onkoRuutuUhattu(Asema* asema, const Ruutu& ruutu);
+
+	// VIIKKO 5
+	double evaluoi();
+	MinMaxPaluu maxi(int syvyys, Asema* asema);
+	MinMaxPaluu mini(int syvyys, Asema* asema);
 
 private:
 	static Kuningas vk;

@@ -161,6 +161,7 @@
     <ClInclude Include="Kuningas.h" />
     <ClInclude Include="Kuningatar.h" />
     <ClInclude Include="Lahetti.h" />
+    <ClInclude Include="MinMaxPaluu.h" />
     <ClInclude Include="Nappula.h" />
     <ClInclude Include="Ratsu.h" />
     <ClInclude Include="Ruutu.h" />

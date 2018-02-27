@@ -12,7 +12,7 @@ int main()
 	while (true) {
 		kayttoliittyma.piirraLauta();
 
-		std::list<Siirto> siirrot;
+		/*std::list<Siirto> siirrot;
 		asema.annaLaillisetSiirrot(siirrot, true);
 		bool siirtoLaillinen = false;
 
@@ -25,8 +25,11 @@ int main()
 					siirtoLaillinen = true;
 					break;
 				}
-			}
-		}
+			}		
+		}*/
+
+		MinMaxPaluu paluu = asema.maxi(2, &asema);
+		asema.paivitaAsema(&paluu.parasSiirto);
 		
 		system("cls");
 	}

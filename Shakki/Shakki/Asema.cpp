@@ -27,7 +27,7 @@ Asema::Asema(){
 	}
 
 	// Asetetaan valkoiset nappulat laudalle
-	lauta[3][0] = &vt;
+	lauta[0][0] = &vt;
 	lauta[0][1] = &vr;
 	lauta[0][2] = &vl;
 	lauta[0][3] = &vd;
@@ -36,7 +36,7 @@ Asema::Asema(){
 	lauta[0][6] = &vr;
 	lauta[0][7] = &vt;
 	// Sotilaat
-	lauta[1][0] = &ms;
+	lauta[1][0] = &vs;
 	lauta[1][1] = &vs;
 	lauta[1][2] = &vs;
 	lauta[1][3] = &vs;
@@ -430,4 +430,74 @@ bool Asema::onkoRuutuUhattu(Asema* asema, const Ruutu& ruutu) {
 		asema->siirtovuoro = 0;
 	}
 	return false;
+}
+
+double Asema::evaluoi() {
+	double evaluointiArvo = 0.0;
+
+	double materiaaliArvot[14] = {
+		5.0, 3.0, 3.25, 9.0, 0.0, 1.0,		// Valkeat
+		-5.0, -3.0, -3.25, -9.0, 0.0, -1.0,	// Mustat
+		-1.0, 1.0							// Ohestalyönti
+	};
+
+	for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			if (lauta[i][j]) {
+				evaluointiArvo += materiaaliArvot[lauta[i][j]->getKoodi()] / abs(((double) i) - 3.5);
+			}
+		}
+	}
+
+	if (siirtovuoro == 1) {
+		evaluointiArvo = -evaluointiArvo;
+	}
+
+	return evaluointiArvo;
+}
+
+MinMaxPaluu Asema::maxi(int syvyys, Asema* asema) {
+	if (syvyys == 0) {
+		return MinMaxPaluu(asema->evaluoi(), Siirto());
+	}
+	
+	MinMaxPaluu max(-100000.0, Siirto());
+	std::list<Siirto> siirrot;
+	asema->annaLaillisetSiirrot(siirrot, true);
+
+	for (std::list<Siirto>::iterator i = siirrot.begin(); i != siirrot.end(); i++) {
+		Asema uusiAsema(*asema);
+		uusiAsema.paivitaAsema(&*i);
+		MinMaxPaluu tulos = uusiAsema.mini(syvyys - 1, &uusiAsema);
+
+		if (tulos.evaluointiArvo > max.evaluointiArvo) {
+			max = tulos;
+			max.parasSiirto = *i;
+		}
+	}
+
+	return max;
+}
+
+MinMaxPaluu Asema::mini(int syvyys, Asema* asema) {
+	if (syvyys == 0) {
+		return MinMaxPaluu(asema->evaluoi(), Siirto());
+	}
+
+	MinMaxPaluu min(100000.0, Siirto());
+	std::list<Siirto> siirrot;
+	asema->annaLaillisetSiirrot(siirrot, true);
+
+	for (std::list<Siirto>::iterator i = siirrot.begin(); i != siirrot.end(); i++) {
+		Asema uusiAsema(*asema);
+		uusiAsema.paivitaAsema(&*i);
+		MinMaxPaluu tulos = uusiAsema.maxi(syvyys - 1, &uusiAsema);
+
+		if (tulos.evaluointiArvo < min.evaluointiArvo) {
+			min = tulos;
+			min.parasSiirto = *i;
+		}
+	}
+	
+	return min;
 }
