@@ -45,6 +45,10 @@ public:
 	MinMaxPaluu maxi(int syvyys, Asema* asema);
 	MinMaxPaluu mini(int syvyys, Asema* asema);
 
+	// OMAT
+	MinMaxPaluu alphaBetaMax(double alpha, double beta, int syvyys, Asema* asema);
+	MinMaxPaluu alphaBetaMin(double alpha, double beta, int syvyys, Asema* asema);
+
 private:
 	static Kuningas vk;
 	static Kuningatar vd;
@@ -73,4 +77,8 @@ private:
 
 	// VIIKKO 4
 	Ruutu kuningasRuudut[2];
+
+	// VIIKKO 5
+	bool valkeaKuningasUhattu;
+	bool mustaKuningasUhattu;
 };

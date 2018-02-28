@@ -12,10 +12,10 @@ int main()
 		kayttoliittyma.piirraLauta();
 
 		if (asema.getSiirtovuoro() == 0) {
-			//MinMaxPaluu paluu = asema.maxi(2, &asema);
-			//asema.paivitaAsema(&paluu.parasSiirto);
+			MinMaxPaluu paluu = asema.alphaBetaMax(-100000, 100000, 2, &asema);
+			asema.paivitaAsema(&paluu.parasSiirto);
 
-			std::list<Siirto> siirrot;
+			/*std::list<Siirto> siirrot;
 			asema.annaLaillisetSiirrot(siirrot, true);
 			bool siirtoLaillinen = false;
 
@@ -29,10 +29,10 @@ int main()
 						break;
 					}
 				}		
-			}
+			}*/
 		}
 		else {
-			MinMaxPaluu paluu = asema.mini(2, &asema);
+			MinMaxPaluu paluu = asema.alphaBetaMin(-100000, 100000, 2, &asema);
 			asema.paivitaAsema(&paluu.parasSiirto);
 		}
 

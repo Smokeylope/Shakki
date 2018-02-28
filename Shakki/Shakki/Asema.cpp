@@ -18,6 +18,8 @@ Sotilas Asema::mso(L"\u2659", 1, 12);
 
 Asema::Asema(){
 	siirtovuoro = 0;
+	valkeaKuningasUhattu = false;
+	mustaKuningasUhattu = false;
 
 	// LAUDAN ALUSTUS
 	for(int i = 0; i < 8; i++){
@@ -329,8 +331,12 @@ void Asema::annaLaillisetSiirrot(std::list<Siirto>& lista, bool omaVuoro) {
 			Ruutu ruutu(i, j);
 
 			if (nappula) {
-				if ((siirtovuoro == 0 && nappula->getKoodi() == VK) || (siirtovuoro == 1 && nappula->getKoodi() == MK)) {
-					kuningasRuudut[siirtovuoro] = ruutu;
+				if (siirtovuoro == 0 && nappula->getKoodi() == VK) {
+					kuningasRuudut[0] = ruutu;
+				}
+
+				if (siirtovuoro == 1 && nappula->getKoodi() == MK) {
+					kuningasRuudut[1] = ruutu;
 				}
 
 				if (nappula->getVari() == siirtovuoro) {
@@ -353,6 +359,20 @@ void Asema::annaLaillisetSiirrot(std::list<Siirto>& lista, bool omaVuoro) {
 	}
 
 	if (omaVuoro) {
+		if (onkoRuutuUhattu(this, kuningasRuudut[0])) {
+			valkeaKuningasUhattu = true;
+		}
+		else {
+			valkeaKuningasUhattu = false;
+		}
+
+		if (onkoRuutuUhattu(this, kuningasRuudut[1])) {
+			mustaKuningasUhattu = true;
+		}
+		else {
+			valkeaKuningasUhattu = false;
+		}
+
 		for (std::list<Siirto>::iterator i = tmpLista.begin(); i != tmpLista.end(); i++) {
 			Asema uusiAsema(*this);
 			int alkuRivi = i->getAlkuruutu().getRivi();
@@ -456,7 +476,7 @@ double Asema::evaluoi() {
 		-30,  0, 15, 20, 20, 15,  0,-30,
 		-30,  5, 10, 15, 15, 10,  5,-30,
 		-40,-20,  0,  5,  5,  0,-20,-40,
-		-50,-40,-30,-30,-30,-30,-40,-50
+		-50,-10,-30,-30,-30,-30,-10,-50
 	};
 
 	double sotilasTaulukko[64] =
@@ -563,6 +583,15 @@ MinMaxPaluu Asema::maxi(int syvyys, Asema* asema) {
 	std::list<Siirto> siirrot;
 	asema->annaLaillisetSiirrot(siirrot, true);
 
+	if (siirrot.size() == 0) {
+		if (valkeaKuningasUhattu) {
+			return MinMaxPaluu(-100000.0, Siirto());
+		}
+		else {
+			return MinMaxPaluu(0.0, Siirto());
+		}
+	}
+
 	for (std::list<Siirto>::iterator i = siirrot.begin(); i != siirrot.end(); i++) {
 		Asema uusiAsema(*asema);
 		uusiAsema.paivitaAsema(&*i);
@@ -586,6 +615,15 @@ MinMaxPaluu Asema::mini(int syvyys, Asema* asema) {
 	std::list<Siirto> siirrot;
 	asema->annaLaillisetSiirrot(siirrot, true);
 
+	if (siirrot.size() == 0) {
+		if (mustaKuningasUhattu) {
+			return MinMaxPaluu(100000.0, Siirto());
+		}
+		else {
+			return MinMaxPaluu(0.0, Siirto());
+		}
+	}
+
 	for (std::list<Siirto>::iterator i = siirrot.begin(); i != siirrot.end(); i++) {
 		Asema uusiAsema(*asema);
 		uusiAsema.paivitaAsema(&*i);
@@ -599,3 +637,78 @@ MinMaxPaluu Asema::mini(int syvyys, Asema* asema) {
 	
 	return min;
 }
+
+MinMaxPaluu Asema::alphaBetaMax(double alpha, double beta, int syvyys, Asema* asema) {
+	if (syvyys == 0) {
+		return MinMaxPaluu(asema->evaluoi(), Siirto());
+	}
+
+	//MinMaxPaluu max(-100000.0, Siirto());
+	Siirto parasSiirto;
+	std::list<Siirto> siirrot;
+	asema->annaLaillisetSiirrot(siirrot, true);
+
+	if (siirrot.size() == 0) {
+		if (valkeaKuningasUhattu) {
+			return MinMaxPaluu(-100000.0, Siirto());
+		}
+		else {
+			return MinMaxPaluu(0.0, Siirto());
+		}
+	}
+
+	for (std::list<Siirto>::iterator i = siirrot.begin(); i != siirrot.end(); i++) {
+		Asema uusiAsema(*asema);
+		uusiAsema.paivitaAsema(&*i);
+		MinMaxPaluu tulos = uusiAsema.alphaBetaMin(alpha, beta, syvyys - 1, &uusiAsema);
+
+		if (tulos.evaluointiArvo >= beta) {
+			return MinMaxPaluu(beta, *i);
+		}
+
+		if (tulos.evaluointiArvo > alpha) {
+			alpha = tulos.evaluointiArvo;
+			parasSiirto = *i;
+		}
+	}
+
+	return MinMaxPaluu(alpha, parasSiirto);
+}
+
+MinMaxPaluu Asema::alphaBetaMin(double alpha, double beta, int syvyys, Asema* asema) {
+	if (syvyys == 0) {
+		return MinMaxPaluu(asema->evaluoi(), Siirto());
+	}
+
+	//MinMaxPaluu min(100000.0, Siirto());
+	Siirto parasSiirto;
+	std::list<Siirto> siirrot;
+	asema->annaLaillisetSiirrot(siirrot, true);
+
+	if (siirrot.size() == 0) {
+		if (mustaKuningasUhattu) {
+			return MinMaxPaluu(100000.0, Siirto());
+		}
+		else {
+			return MinMaxPaluu(0.0, Siirto());
+		}
+	}
+
+	for (std::list<Siirto>::iterator i = siirrot.begin(); i != siirrot.end(); i++) {
+		Asema uusiAsema(*asema);
+		uusiAsema.paivitaAsema(&*i);
+		MinMaxPaluu tulos = uusiAsema.alphaBetaMax(alpha, beta, syvyys - 1, &uusiAsema);
+
+		if (tulos.evaluointiArvo <= alpha) {
+			return MinMaxPaluu(alpha, *i);
+		}
+
+		if (tulos.evaluointiArvo < beta) {
+			beta = tulos.evaluointiArvo;
+			parasSiirto = *i;
+		}
+	}
+
+	return MinMaxPaluu(beta, parasSiirto);
+}
+
