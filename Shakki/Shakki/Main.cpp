@@ -12,7 +12,8 @@ int main()
 		kayttoliittyma.piirraLauta();
 
 		if (asema.getSiirtovuoro() == 0) {
-			MinMaxPaluu paluu = asema.alphaBetaMax(-100000, 100000, 2, &asema);
+			//MinMaxPaluu paluu = asema.maxi(3, &asema);
+			MinMaxPaluu paluu = asema.alphaBetaMax(-100000, 100000, 3, &asema);
 			asema.paivitaAsema(&paluu.parasSiirto);
 
 			/*std::list<Siirto> siirrot;
@@ -32,7 +33,8 @@ int main()
 			}*/
 		}
 		else {
-			MinMaxPaluu paluu = asema.alphaBetaMin(-100000, 100000, 2, &asema);
+			//MinMaxPaluu paluu = asema.mini(3, &asema);
+			MinMaxPaluu paluu = asema.alphaBetaMin(-100000, 100000, 3, &asema);
 			asema.paivitaAsema(&paluu.parasSiirto);
 		}
 

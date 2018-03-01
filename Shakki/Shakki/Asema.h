@@ -8,6 +8,7 @@
 #include "Ratsu.h"
 #include "Sotilas.h"
 #include "MinMaxPaluu.h"
+#include <ctime>
 
 /*class Nappula;
 class Kuningas : public Nappula;
@@ -81,4 +82,7 @@ private:
 	// VIIKKO 5
 	bool valkeaKuningasUhattu;
 	bool mustaKuningasUhattu;
+
+	int startTime;
+	int time;
 };

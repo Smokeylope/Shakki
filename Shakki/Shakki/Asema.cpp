@@ -17,6 +17,8 @@ Sotilas Asema::ms(L"\u265F", 1, 11);
 Sotilas Asema::mso(L"\u2659", 1, 12);
 
 Asema::Asema(){
+	startTime = std::time(NULL);
+
 	siirtovuoro = 0;
 	valkeaKuningasUhattu = false;
 	mustaKuningasUhattu = false;
@@ -71,6 +73,9 @@ Asema::Asema(){
   // VIIKKO 2
 
 void Asema::paivitaAsema(Siirto* siirto) {
+	time = std::time(NULL);
+	int timePlayed = time - startTime;
+
 		// mikä nappula on alkuruudussa
 	Ruutu alkuRuutu = siirto->getAlkuruutu();
 	Ruutu loppuRuutu = siirto->getLoppuruutu();
