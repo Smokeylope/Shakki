@@ -35,11 +35,18 @@ int main()
 		else {
 			//MinMaxPaluu paluu = asema.mini(3, &asema);
 			MinMaxPaluu paluu = asema.alphaBetaMin(-100000, 100000, 4, &asema);
-			asema.paivitaAsema(&paluu.parasSiirto);
+			if (paluu.parasSiirto.getAlkuruutu().getRivi() < 0){
+				break;
+			}
+			else {
+				asema.paivitaAsema(&paluu.parasSiirto);
+			}
+			
 		}
-
+		
 		system("cls");
 	}
+	std::wcout << "Peli on päättynyt!" << std::endl;
 
 	return 0;
 }
