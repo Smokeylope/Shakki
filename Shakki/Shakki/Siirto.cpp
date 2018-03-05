@@ -5,13 +5,15 @@ Siirto::Siirto(Ruutu alku, Ruutu loppu) {
 	_loppuRuutu = loppu;
 	_lyhytLinna = false;
 	_pitkaLinna = false;
+	_alkuRuutu = Ruutu(-1, -1);
+	_loppuRuutu = Ruutu(-1, -1);
 }
 
 Siirto::Siirto(bool lyhytLinna, bool pitkaLinna) {
 	_lyhytLinna = lyhytLinna;
 	_pitkaLinna = pitkaLinna;
-	_alkuRuutu = Ruutu(-1, -1);
-	_loppuRuutu = Ruutu(-1, -1);
+	_alkuRuutu = Ruutu(0, 0);
+	_loppuRuutu = Ruutu(0, 0);
 }
 
 Ruutu Siirto::getAlkuruutu() const {
