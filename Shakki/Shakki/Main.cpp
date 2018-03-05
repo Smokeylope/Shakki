@@ -43,9 +43,10 @@ int main()
 			}
 			
 		}
-		std::wcout << "Peli on päättynyt!" << std::endl;
+		
 		system("cls");
 	}
-	
+	std::wcout << "Peli on päättynyt!" << std::endl;
+
 	return 0;
 }
