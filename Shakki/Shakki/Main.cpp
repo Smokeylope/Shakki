@@ -13,10 +13,10 @@ int main()
 
 		if (asema.getSiirtovuoro() == 0) {
 			//MinMaxPaluu paluu = asema.maxi(3, &asema);
-			MinMaxPaluu paluu = asema.alphaBetaMax(-100000, 100000, 3, &asema);
-			asema.paivitaAsema(&paluu.parasSiirto);
+			//MinMaxPaluu paluu = asema.alphaBetaMax(-100000, 100000, 4, &asema);
+			//asema.paivitaAsema(&paluu.parasSiirto);
 
-			/*std::list<Siirto> siirrot;
+			std::list<Siirto> siirrot;
 			asema.annaLaillisetSiirrot(siirrot, true);
 			bool siirtoLaillinen = false;
 
@@ -30,11 +30,11 @@ int main()
 						break;
 					}
 				}		
-			}*/
+			}
 		}
 		else {
 			//MinMaxPaluu paluu = asema.mini(3, &asema);
-			MinMaxPaluu paluu = asema.alphaBetaMin(-100000, 100000, 3, &asema);
+			MinMaxPaluu paluu = asema.alphaBetaMin(-100000, 100000, 4, &asema);
 			asema.paivitaAsema(&paluu.parasSiirto);
 		}
 

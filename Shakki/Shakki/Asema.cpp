@@ -375,7 +375,7 @@ void Asema::annaLaillisetSiirrot(std::list<Siirto>& lista, bool omaVuoro) {
 			mustaKuningasUhattu = true;
 		}
 		else {
-			valkeaKuningasUhattu = false;
+			mustaKuningasUhattu = false;
 		}
 
 		for (std::list<Siirto>::iterator i = tmpLista.begin(); i != tmpLista.end(); i++) {
