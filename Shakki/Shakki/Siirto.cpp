@@ -1,12 +1,15 @@
 #include "Siirto.h"
 
+Siirto::Siirto() {
+	_alkuRuutu = Ruutu(-1, -1);
+	_loppuRuutu = Ruutu(-1, -1);
+}
+
 Siirto::Siirto(Ruutu alku, Ruutu loppu) {
 	_alkuRuutu = alku;
 	_loppuRuutu = loppu;
 	_lyhytLinna = false;
 	_pitkaLinna = false;
-	_alkuRuutu = Ruutu(-1, -1);
-	_loppuRuutu = Ruutu(-1, -1);
 }
 
 Siirto::Siirto(bool lyhytLinna, bool pitkaLinna) {

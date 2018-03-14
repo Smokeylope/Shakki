@@ -4,8 +4,8 @@
 
 class Siirto {
 public:
+	Siirto();
 	Siirto(Ruutu, Ruutu);
-	Siirto(){}
 	Siirto(bool lyhytLinna, bool pitkaLinna); // Poikkeussiirto linnoitusta varten
 	Ruutu getAlkuruutu() const;
 	Ruutu getLoppuruutu() const;

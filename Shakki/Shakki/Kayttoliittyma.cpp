@@ -11,7 +11,7 @@ void Kayttoliittyma::piirraLauta() {
 		if (i > -1) {
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_INTENSITY | BACKGROUND_RED |
 				BACKGROUND_GREEN | BACKGROUND_BLUE);
-			std::wcout << i;
+			std::wcout << i + 1;
 
 			for (int j = 0; j < 8; j++) {
 				if (j % 2 == 0) {
@@ -59,7 +59,6 @@ Siirto Kayttoliittyma::annaVastustajanSiirto() {
 	std::wcout << "Evaluointiarvo: " << _asema->evaluoi() << '\n';
 	std::wcout << "Anna siirto:\n";
 
-
 	char alkuSarake = 0;
 	char alkuRivi = 0;
 	char loppuSarake = 0;
@@ -76,20 +75,20 @@ Siirto Kayttoliittyma::annaVastustajanSiirto() {
 		else if (siirto == "O-O-O") {
 			return Siirto(false, true);
 		}
-		else if (siirto.length() == 6) {
-			alkuSarake = siirto[1];
-			alkuRivi = siirto[2];
-			loppuSarake = siirto[4];
-			loppuRivi = siirto[5];
+		else if (siirto.length() == 5) {
+			alkuSarake = siirto[0];
+			alkuRivi = siirto[1];
+			loppuSarake = siirto[3];
+			loppuRivi = siirto[4];
 
-			if (alkuSarake >= 'a' && alkuSarake <= 'h' && alkuRivi >= '0' && alkuRivi <= '7' &&
-				loppuSarake >= 'a' && loppuSarake <= 'h' && loppuRivi >= '0' && loppuRivi <= '7') {
+			if (alkuSarake >= 'a' && alkuSarake <= 'h' && alkuRivi >= '1' && alkuRivi <= '8' &&
+				loppuSarake >= 'a' && loppuSarake <= 'h' && loppuRivi >= '1' && loppuRivi <= '8') {
 
 				siirtoKelpaa = true;
 			}
 		}
 	}
 	
-	return Siirto(Ruutu(alkuRivi - '0', alkuSarake - 'a'),
-		Ruutu(loppuRivi - '0', loppuSarake - 'a'));
+	return Siirto(Ruutu(alkuRivi - '1', alkuSarake - 'a'),
+		Ruutu(loppuRivi - '1', loppuSarake - 'a'));
 }
