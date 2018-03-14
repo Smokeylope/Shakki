@@ -48,7 +48,7 @@ int main()
 
 			auto vuoronLoppu = std::chrono::high_resolution_clock::now();
 			long long millisekunnit = std::chrono::duration_cast<std::chrono::milliseconds>(vuoronLoppu - vuoronAlku).count();
-			valkeanAika -= millisekunnit * 0.001;
+			//valkeanAika -= millisekunnit * 0.001;
 
 			if (valkeanAika < 0.0) {
 				break;
@@ -66,7 +66,7 @@ int main()
 			
 			auto vuoronLoppu = std::chrono::high_resolution_clock::now();
 			long long millisekunnit = std::chrono::duration_cast<std::chrono::milliseconds>(vuoronLoppu - vuoronAlku).count();
-			mustanAika -= millisekunnit * 0.001;
+			//mustanAika -= millisekunnit * 0.001;
 
 			if (mustanAika < 0.0) {
 				break;
